@@ -14,6 +14,7 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Physics")]
     public float speed = 3f;
+    private float baseSpeed;
     public float nextWaypointDist = 3f;
     public float jumpNodeHeightRequirement = 0.8f;
     public float jumpModifier = 0.3f;
@@ -50,6 +51,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
+        baseSpeed = speed;
+
         if(targetPos == null)
         {
             target = transform.position;
@@ -100,6 +103,11 @@ public class EnemyAI : MonoBehaviour
         if (playerSeen)
         {
             GetComponent<EnemyEmotions>().PlayerSeen();
+        }
+
+        if(speed == 0)
+        {
+            speed = baseSpeed;
         }
     }
 

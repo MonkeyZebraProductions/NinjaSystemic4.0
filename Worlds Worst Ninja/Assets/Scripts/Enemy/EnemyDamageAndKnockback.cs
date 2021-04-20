@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyDamageAndKnockback : MonoBehaviour
 {
+    public bool hasShield = false;
+
     public float Health=10f;
 
     public float damageReductionValue = 2f;
@@ -33,7 +35,12 @@ public class EnemyDamageAndKnockback : MonoBehaviour
 
         _rb.AddForce(arrow.dir * 100f * _WS.WeaponForce);
         if (GetComponent<EnemyAI>().playerSeen == false)
-            Health -= _WS.WeaponDamage;
+        {
+            if(!hasShield)
+                Health -= _WS.WeaponDamage;
+            else
+                Health -= _WS.WeaponDamage / 2;
+        }
         else
             Health -= _WS.WeaponDamage / damageReductionValue;
 
@@ -47,9 +54,12 @@ public class EnemyDamageAndKnockback : MonoBehaviour
 
     public void FirendlyFire(int damage)
     {
-        Health -= damage;
+        if(!hasShield)
+            Health -= damage;
+        else
+            Health -= damage / 2;
 
-        if(Health <= 0)
+        if (Health <= 0)
         {
             Destroy(gameObject);
         }
@@ -61,7 +71,15 @@ public class EnemyDamageAndKnockback : MonoBehaviour
     {
         if(collision.gameObject.layer==13)
         {
-            Health -= ExplosionDamage;
+            if (!hasShield)
+            {
+                Health -= ExplosionDamage;
+            }
+            else
+            {
+                Health -= ExplosionDamage / 2;
+            }
+
             ExplosionDirection = (collision.gameObject.transform.position - transform.position);
             ExplosionDirection.Normalize();
             _rb.AddForce(ExplosionDirection * 1000f);
