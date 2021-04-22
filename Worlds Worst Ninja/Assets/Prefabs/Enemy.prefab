@@ -362,9 +362,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00a4556510a18849a30edc373ba7e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasShield: 0
   Health: 10
-  score: 10
   damageReductionValue: 2
+  ExplosionDamage: 9
   IsFront: 0
   IsBack: 0
 --- !u!114 &3141676385094341494
