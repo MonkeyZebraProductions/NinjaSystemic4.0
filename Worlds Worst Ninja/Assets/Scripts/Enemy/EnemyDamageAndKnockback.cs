@@ -8,6 +8,8 @@ public class EnemyDamageAndKnockback : MonoBehaviour
 
     public float Health=10f;
 
+    public HealthBar healthBar;
+
     public float damageReductionValue = 2f;
 
     public float ExplosionDamage=9f;
@@ -17,12 +19,14 @@ public class EnemyDamageAndKnockback : MonoBehaviour
     private Arrow arrow;
     private WeaponStat _WS;
     private Vector2 ExplosionDirection;
+
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         arrow = FindObjectOfType<Arrow>();
-       
+
+        healthBar.SetMaxHealth(Health);
     }
 
     private void Update()
@@ -44,6 +48,8 @@ public class EnemyDamageAndKnockback : MonoBehaviour
         else
             Health -= _WS.WeaponDamage / damageReductionValue;
 
+        healthBar.SetHealth(Health);
+
         if (Health <= 0)
         {
             Destroy(gameObject);
@@ -59,13 +65,13 @@ public class EnemyDamageAndKnockback : MonoBehaviour
         else
             Health -= damage / 2;
 
+        healthBar.SetHealth(Health);
+
         if (Health <= 0)
         {
             Destroy(gameObject);
         }
     }
-
-    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -83,6 +89,8 @@ public class EnemyDamageAndKnockback : MonoBehaviour
             ExplosionDirection = (collision.gameObject.transform.position - transform.position);
             ExplosionDirection.Normalize();
             _rb.AddForce(ExplosionDirection * 1000f);
+
+            healthBar.SetHealth(Health);
         }
     }
 }

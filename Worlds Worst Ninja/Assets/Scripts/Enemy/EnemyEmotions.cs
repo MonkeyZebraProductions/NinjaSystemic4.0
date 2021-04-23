@@ -12,7 +12,9 @@ public class EnemyEmotions : MonoBehaviour
     public void SoundHeard()
     {
         if(GetComponent<EnemyAI>().playerSeen == false)
+        {
             emotionRenderer.sprite = soundHeard;
+        }
     }
 
     public void PlayerSeen()
