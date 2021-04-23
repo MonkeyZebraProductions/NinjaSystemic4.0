@@ -14,6 +14,7 @@ public class EnemyEmotions : MonoBehaviour
         if(GetComponent<EnemyAI>().playerSeen == false)
         {
             emotionRenderer.sprite = soundHeard;
+            FindObjectOfType<AudioManager>().Play("EnemyHuh");
         }
     }
 

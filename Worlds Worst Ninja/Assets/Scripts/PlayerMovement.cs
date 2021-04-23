@@ -229,6 +229,8 @@ public class PlayerMovement : MonoBehaviour
             _jumpMultiplyerRate = 0.9f;
             _jumps -= 1;           
         }
+
+        FindObjectOfType<AudioManager>().Play("Jump");
        
     }
 
