@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1544840074214344725}
   - component: {fileID: 1544840074214344721}
   - component: {fileID: 1544840074214344718}
-  - component: {fileID: 2240835349341902549}
   - component: {fileID: 298367390951443121}
   - component: {fileID: 1466551451040469220}
   m_Layer: 13
@@ -114,9 +113,9 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544840074214344724}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 1
+  m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -139,11 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a279788de5307945b9b22b043173d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 1000
+  force: 2
   FOI: 0.77
-  hitLayer:
-    serializedVersion: 2
-    m_Bits: 2048
 --- !u!95 &1544840074214344718
 Animator:
   serializedVersion: 3
@@ -163,26 +159,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!250 &2240835349341902549
-PointEffector2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1544840074214344724}
-  m_Enabled: 0
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 4096
-  m_ForceMagnitude: 25000
-  m_ForceVariation: 0
-  m_DistanceScale: 0.1
-  m_ForceSource: 1
-  m_ForceTarget: 0
-  m_ForceMode: 2
-  m_Drag: 0
-  m_AngularDrag: 0
 --- !u!114 &298367390951443121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +166,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544840074214344724}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47e42d28cda46b34cb7f8804e6db4c25, type: 3}
   m_Name: 

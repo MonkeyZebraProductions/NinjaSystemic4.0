@@ -32,12 +32,16 @@ public class EnemyDamageAndKnockback : MonoBehaviour
     private void Update()
     {
         _WS = FindObjectOfType<WeaponStat>();
+        if (Health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     // Update is called once per frame
     public void HitEnemy()
     {
-
-        _rb.AddForce(arrow.dir * 100f * _WS.WeaponForce);
+        Debug.Log("yo");
+        _rb.AddForce(arrow.dir * 1000f * _WS.WeaponForce);
         if (GetComponent<EnemyAI>().playerSeen == false)
         {
             if(!hasShield)
@@ -48,12 +52,16 @@ public class EnemyDamageAndKnockback : MonoBehaviour
         else
             Health -= _WS.WeaponDamage / damageReductionValue;
 
+<<<<<<< Updated upstream
         healthBar.SetHealth(Health);
 
         if (Health <= 0)
         {
             Destroy(gameObject);
         }
+=======
+        
+>>>>>>> Stashed changes
 
         Debug.Log("Hi");
     }
@@ -73,9 +81,14 @@ public class EnemyDamageAndKnockback : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer==13)
+        if (collision.gameObject.layer == 13)
         {
             if (!hasShield)
             {
@@ -91,6 +104,10 @@ public class EnemyDamageAndKnockback : MonoBehaviour
             _rb.AddForce(ExplosionDirection * 1000f);
 
             healthBar.SetHealth(Health);
+        }
+        if (collision.gameObject.layer == 16)
+        {
+            HitEnemy();
         }
     }
 }

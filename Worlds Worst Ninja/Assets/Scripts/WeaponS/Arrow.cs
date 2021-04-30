@@ -9,9 +9,9 @@ public class Arrow : MonoBehaviour
 
     public Transform LookTarget;
 
-    private float maxDirX, maxDirY, maxRadius;
+    private float maxDirX, maxDirY, maxRadius,assaultTime;
 
-    public float angle;
+    public float angle,AssaultTimer;
 
     public LayerMask WhatIsGround, WhatIsEnemy,WhatIsFront,WhatIsBack, WhatIsWall;
 
@@ -34,7 +34,7 @@ public class Arrow : MonoBehaviour
 
     private EnemyDamageAndKnockback _EDK;
 
-    private DectectEnemy _DE;
+    
 
     private LineRenderer line;
 
@@ -58,7 +58,7 @@ public class Arrow : MonoBehaviour
     void FixedUpdate()
     {
         _WS = FindObjectOfType<WeaponStat>();
-        _DE = FindObjectOfType<DectectEnemy>();
+       
         if(_hitenemy)
         {
             maxRadius=Vector2.Distance(transform.position,hitEnemy.point);
@@ -91,47 +91,40 @@ public class Arrow : MonoBehaviour
 
        
         line.SetPosition(1, new Vector3(maxRadius, 0, 0));
-    }
 
-    public void HitEnemy()
-    {
-        if(_DE.HasHit)
+
+        if(assaultTime<AssaultTimer)
         {
-            _EDK = FindObjectOfType<EnemyDamageAndKnockback>();
-            _EDK.HitEnemy();
-           
+            assaultTime += Time.deltaTime;
         }
     }
+
 
     public void CreateDebris()
     {
 
         Instantiate(Sound, transform.position, Quaternion.identity);
         Instantiate(BurstPart, transform.position, Quaternion.identity);
+        if(_WS.IsAuto)
+        {
+            if(assaultTime>=AssaultTimer)
+            {
+                Instantiate(_WS.Rocket, Spawner.position, Quaternion.Euler(0, 0, angle));
+                assaultTime = 0;
+            }
+        }
+        else
+        {
+            Instantiate(_WS.Rocket, Spawner.position, Quaternion.Euler(0, 0, angle));
+        }
         
-        if (_hitground == true)
-        {
-            
-            Instantiate(Sound, hitGround.point, Quaternion.identity);
-            Instantiate(Particles, hitGround.point, Quaternion.identity);
-        }
-        if (_hitwall == true)
-        {
-            
-            Instantiate(Sound, hitWall.point, Quaternion.identity);
-            Instantiate(Particles, hitWall.point, Quaternion.identity);
-        }
-
-        if (_WS.IsExplosive)
-        {
-            Instantiate(_WS.Rocket, Spawner.position, Quaternion.identity);
-        }
-
     }
 
     
 
-    
+   
+
+
 
     private void OnEnable()
     {

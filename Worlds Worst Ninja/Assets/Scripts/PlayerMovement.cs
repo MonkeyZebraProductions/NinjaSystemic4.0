@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
 
@@ -14,26 +15,25 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public int MaxOverheat = 1000;
     [SerializeField] public float ExplosionForce = 10f;
     [SerializeField] public int MaxJumps = 1;
+    public float Health = 10;
 
-
-    
-    public float WallJumpTimer, _reloadTime, _wallJumpTime=1;
+    public float WallJumpTimer, _reloadTime=1;
 
     public GameObject SelectedWeapon;
 
-    public Transform LootTarget;
+    public Transform LootTarget,LeftWallPoint,RightWallPoint;
 
     public Camera camera;
 
     private Vector2 move,look;
 
-    private bool _isGrounded,_canMove,_firingSingle;
+    private bool _isGrounded,_canMove,_firingSingle, _isRightWalled, _isLeftWalled,_canRightWall,_canLeftWall,_firstGrab,_isWallJumping;
 
-    public bool IsRightWalled, IsLeftWalled, IsVisable, _canFire, _isAuto, _isFiring,_isExplosion, _isJumping, _hasSwitched;
+    public bool  IsVisable, _canFire, _isAuto, _isFiring,_isExplosion, _isJumping, _hasSwitched;
 
-    private float _jumpMultiplyer, ExplosionMultiplier = 1;
-   
-    private float _jumpMultiplyerRate,_ExplosionMultiplierRate,_hangTime;
+    private float _jumpMultiplyer, _airMultiplier, ExplosionMultiplier = 1;
+
+    private float _jumpMultiplyerRate, _ExplosionMultiplierRate, _hangTime, _wallJumpTime;
 
     private int _jumps,_overheatStep,_overHeat;
 
@@ -51,7 +51,9 @@ public class PlayerMovement : MonoBehaviour
 
     private WeaponStat _WS;
 
-    public float Health = 10;
+    public LayerMask WhatIsWall;
+
+    public Slider HealthSlider;
 
     void Awake()
     {
@@ -86,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
         _reloadTime = _WS.ReloadTime;
         _hangTime = HangTimer;
         _ExplosionMultiplierRate = 0.9f;
+        _wallJumpTime = 0;
     }
 
     // Update is called once per frame
@@ -94,81 +97,110 @@ public class PlayerMovement : MonoBehaviour
         if (_isGrounded)
         {
             _jumps = MaxJumps;
-            _wallJumpTime = WallJumpTimer;
+            _firstGrab = false;
         }
         _WS = FindObjectOfType<WeaponStat>();
         _isAuto = _WS.IsAuto;
-        if(IsLeftWalled&&_isJumping||IsRightWalled && _isJumping)
-        {
-            _canMove = false;
-        }
-        else
-        {
-            _canMove = true;
-        }
+        
         if(Health<=0)
         {
             Destroy(gameObject);
         }
+        _isLeftWalled=Physics2D.OverlapCircle(LeftWallPoint.position, 0.2f, WhatIsWall);
+        _isRightWalled = Physics2D.OverlapCircle(RightWallPoint.position, 0.2f, WhatIsWall);
         
+        Debug.Log(_canMove);
+        if(_canRightWall && move.x>0 && !_isGrounded)
+        {
+            _isRightWalled= true;
+        }
+        
+        if(_canLeftWall && move.x < 0 && !_isGrounded)
+        {
+            _isLeftWalled = true;
+        }
+
+        HealthSlider.value = Health;
     }
 
     private void FixedUpdate()
     {
-        move = inputs.Player.Move.ReadValue<Vector2>();
-        Vector3 mousePosition = inputs.Player.Look.ReadValue<Vector2>();
-        //LootTarget.transform.position = new Vector3(look.x, look.y, 0);
-
-
-        mousePosition.z = 20;
-        mousePosition = camera.ScreenToWorldPoint(mousePosition);
-        mousePosition.z = 0;
-        LootTarget.position = mousePosition;
-
-        
-        //SelectedWeapon.transform.LookAt(LootTarget.transform, Vector2.up);
-        if(_canMove)
+        if (_wallJumpTime <= 0)
         {
-            _rb2D.velocity = new Vector2(move.x * MovementSpeed, 0);
-        }
 
-        //checks if jump button was pressed
-        if (_isJumping == true)
-        {
-            if(IsLeftWalled && _wallJumpTime>0)
+
+            move = inputs.Player.Move.ReadValue<Vector2>();
+            Vector3 mousePosition = inputs.Player.Look.ReadValue<Vector2>();
+            //LootTarget.transform.position = new Vector3(look.x, look.y, 0);
+
+
+            mousePosition.z = 20;
+            mousePosition = camera.ScreenToWorldPoint(mousePosition);
+            mousePosition.z = 0;
+            LootTarget.position = mousePosition;
+
+            if (_rb2D.velocity.y <= 0 && !_firingSingle && !_isGrounded && !_isLeftWalled && !_isRightWalled)
             {
-               _rb2D.AddForce(new Vector2(JumpSpeed, JumpSpeed * 2f));
-                _wallJumpTime -= Time.deltaTime;
-                
+                Debug.Log("Yoo");
+                _rb2D.AddForce(Vector2.up * -9.81f * JumpSpeed * 100f * Time.deltaTime * _airMultiplier);
+                _airMultiplier += 0.075f;
             }
-            else if (IsRightWalled && _wallJumpTime > 0)
+
+            //SelectedWeapon.transform.LookAt(LootTarget.transform, Vector2.up);
+            
+                _rb2D.velocity = new Vector2(move.x * MovementSpeed, 0);
+            
+
+            //checks if jump button was pressed
+            if (_isJumping == true)
             {
-                _rb2D.AddForce(new Vector2(-JumpSpeed, JumpSpeed * 2f));
-                _wallJumpTime -= Time.deltaTime;
-                
-            }
-            else if (!IsRightWalled && !IsLeftWalled)
-            {
-                _rb2D.AddForce(new Vector2(0, JumpSpeed * _jumpMultiplyer));
+
+
+                _rb2D.velocity += Vector2.up * JumpSpeed * _jumpMultiplyer;
+
                 _jumpMultiplyer *= _jumpMultiplyerRate;
+
+                if (_jumpMultiplyer <= 0.1f)
+                {
+                    _isJumping = false;
+                }
             }
-            
-            
-            if (_jumpMultiplyer <= 0.1f || _wallJumpTime<=0)
+
+            if (_isLeftWalled || _isRightWalled)
             {
-                _isJumping = false;
+                if (!_firstGrab)
+                {
+                    _rb2D.velocity = new Vector2(0, 0);
+                    _jumps += 1;
+                    _firstGrab = true;
+                }
+
+                _airMultiplier = 1;
             }
         }
-
-
+        else
+        {
+            if(_isLeftWalled)
+            {
+                _rb2D.velocity += new Vector2(MovementSpeed, JumpSpeed)*2;
+                _isLeftWalled = false;
+            }
+            if (_isRightWalled)
+            {
+                _rb2D.velocity += new Vector2(-MovementSpeed, JumpSpeed)*2;
+                _isRightWalled = false;
+            }
+            _wallJumpTime -= Time.deltaTime;
+        }
+       
         //Checks if holding fire button
-        if(_canFire==true && _isAuto == true)
+        if (_canFire==true && _isAuto == true)
         {
             if(_overHeat<MaxOverheat)
             {
                 _rb2D.AddForce(new Vector2(arrow.dir.x, arrow.dir.y) * DefaultForce * _WS.WeaponForce * -1f);
+                _rb2D.AddForce(Vector2.up * -9.81f * JumpSpeed * 55f * Time.deltaTime);
                 arrow.CreateDebris();
-                arrow.HitEnemy();
                 //_WS.WeaponSound.Play();
             }
             else
@@ -193,8 +225,9 @@ public class PlayerMovement : MonoBehaviour
         if(_firingSingle)
         {
             _rb2D.AddForce(new Vector2(arrow.dir.x, arrow.dir.y) * _WS.WeaponForce * DefaultForce * -1f);
-            _hangTime -= Time.deltaTime;
             
+            _hangTime -= Time.deltaTime;
+            _airMultiplier = 1f;
             if (_hangTime < 0)
             {
                 
@@ -218,13 +251,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if(IsRightWalled || IsLeftWalled)
+        if (_isLeftWalled || _isRightWalled)
         {
+            _wallJumpTime = WallJumpTimer;
             _jumps += 1;
+
         }
-        if(_jumps>0)
+        if (_jumps>0)
         {
-            _isJumping = true;
+            
+            
+                _isJumping = true;
+            
+            
             _jumpMultiplyer = 1f;
             _jumpMultiplyerRate = 0.9f;
             _jumps -= 1;           
@@ -257,7 +296,6 @@ public class PlayerMovement : MonoBehaviour
             _hangTime = HangTimer;
             _firingSingle = true;
             arrow.CreateDebris();
-            arrow.HitEnemy();
             
             _canFire = false;
             _RV.Rest();
@@ -321,7 +359,7 @@ public class PlayerMovement : MonoBehaviour
         if (collider2D.gameObject.layer == 8)
         {
             _isGrounded = true;
-            _jumpMultiplyer = 1f;
+            _jumpMultiplyer=_airMultiplier = 1f;
         }
         if (collider2D.gameObject.layer == 10)
         {
@@ -343,6 +381,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collider2D)
     {
+        if (collider2D.gameObject.layer == 8)
+        {
+            _isGrounded = true;
+            _jumpMultiplyer= _airMultiplier = 1f;
+        }
         if (collider2D.gameObject.layer == 10)
         {
             IsVisable = true;

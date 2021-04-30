@@ -365,9 +365,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasShield: 0
   Health: 10
+<<<<<<< Updated upstream
   healthBar: {fileID: 2891385396739434501}
   damageReductionValue: 2
   ExplosionDamage: 9
+=======
+  damageReductionValue: 2
+  ExplosionDamage: 10
+>>>>>>> Stashed changes
   IsFront: 0
   IsBack: 0
 --- !u!114 &3141676385094341494
