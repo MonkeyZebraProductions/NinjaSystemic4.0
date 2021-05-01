@@ -370,6 +370,9 @@ MonoBehaviour:
   ExplosionDamage: 9
   IsFront: 0
   IsBack: 0
+  spriteRenderer: {fileID: 3141676385300569882}
+  normalSprite: {fileID: 21300000, guid: 48bab0301f15f41449e853196bb586d8, type: 3}
+  whiteSprite: {fileID: 21300000, guid: 3bab00cd165ab464d94691f29158b4c7, type: 3}
 --- !u!114 &3141676385094341494
 MonoBehaviour:
   m_ObjectHideFlags: 0

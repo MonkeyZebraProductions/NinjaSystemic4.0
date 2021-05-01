@@ -20,6 +20,13 @@ public class EnemyDamageAndKnockback : MonoBehaviour
     private WeaponStat _WS;
     private Vector2 ExplosionDirection;
 
+    [Header("Take Damage")]
+    public SpriteRenderer spriteRenderer;
+
+    public Sprite normalSprite;
+    public Sprite whiteSprite;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +55,8 @@ public class EnemyDamageAndKnockback : MonoBehaviour
         else
             Health -= _WS.WeaponDamage / damageReductionValue;
 
+        StartCoroutine(FlashWhite());
+
         healthBar.SetHealth(Health);
 
         if (Health <= 0)
@@ -64,6 +73,8 @@ public class EnemyDamageAndKnockback : MonoBehaviour
             Health -= damage;
         else
             Health -= damage / 2;
+
+        StartCoroutine(FlashWhite());
 
         healthBar.SetHealth(Health);
 
@@ -90,7 +101,18 @@ public class EnemyDamageAndKnockback : MonoBehaviour
             ExplosionDirection.Normalize();
             _rb.AddForce(ExplosionDirection * 1000f);
 
+            StartCoroutine(FlashWhite());
+
             healthBar.SetHealth(Health);
         }
+    }
+
+    IEnumerator FlashWhite()
+    {
+        spriteRenderer.sprite = whiteSprite;
+
+        yield return new WaitForSeconds(0.5f);
+
+        spriteRenderer.sprite = normalSprite;
     }
 }
