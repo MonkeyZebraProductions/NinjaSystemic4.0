@@ -20,6 +20,13 @@ public class EnemyDamageAndKnockback : MonoBehaviour
     private WeaponStat _WS;
     private Vector2 ExplosionDirection;
 
+    [Header("Take Damage")]
+    public SpriteRenderer spriteRenderer;
+
+    public Sprite normalSprite;
+    public Sprite whiteSprite;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,16 +59,17 @@ public class EnemyDamageAndKnockback : MonoBehaviour
         else
             Health -= _WS.WeaponDamage / damageReductionValue;
 
-<<<<<<< Updated upstream
+
+        StartCoroutine(FlashWhite());
+
+
         healthBar.SetHealth(Health);
 
         if (Health <= 0)
         {
             Destroy(gameObject);
         }
-=======
-        
->>>>>>> Stashed changes
+
 
         Debug.Log("Hi");
     }
@@ -73,6 +81,8 @@ public class EnemyDamageAndKnockback : MonoBehaviour
         else
             Health -= damage / 2;
 
+        StartCoroutine(FlashWhite());
+
         healthBar.SetHealth(Health);
 
         if (Health <= 0)
@@ -81,11 +91,7 @@ public class EnemyDamageAndKnockback : MonoBehaviour
         }
     }
 
-<<<<<<< Updated upstream
-=======
 
-
->>>>>>> Stashed changes
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 13)
@@ -103,11 +109,22 @@ public class EnemyDamageAndKnockback : MonoBehaviour
             ExplosionDirection.Normalize();
             _rb.AddForce(ExplosionDirection * 1000f);
 
+            StartCoroutine(FlashWhite());
+
             healthBar.SetHealth(Health);
         }
         if (collision.gameObject.layer == 16)
         {
             HitEnemy();
         }
+    }
+
+    IEnumerator FlashWhite()
+    {
+        spriteRenderer.sprite = whiteSprite;
+
+        yield return new WaitForSeconds(0.5f);
+
+        spriteRenderer.sprite = normalSprite;
     }
 }
