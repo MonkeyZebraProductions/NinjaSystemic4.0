@@ -276,7 +276,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3191344125878937688, guid: ef4f3266f73c32044956b8937f18437a, type: 3}
       propertyPath: m_Color.a
-      value: 0.1764706
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7644380317879965776, guid: ef4f3266f73c32044956b8937f18437a, type: 3}
       propertyPath: soundRadius
@@ -328,15 +328,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7644380317879965777, guid: ef4f3266f73c32044956b8937f18437a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.45126098
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7644380317879965777, guid: ef4f3266f73c32044956b8937f18437a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.45126098
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7644380317879965777, guid: ef4f3266f73c32044956b8937f18437a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.45126098
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7644380317879965778, guid: ef4f3266f73c32044956b8937f18437a, type: 3}
       propertyPath: m_Name
