@@ -41,6 +41,7 @@ Tilemap:
   m_GameObject: {fileID: 6981915243383644290}
   m_Enabled: 1
   m_Tiles:
+<<<<<<< Updated upstream
   - first: {x: -2, y: -2, z: 0}
     second:
       serializedVersion: 2
@@ -48,6 +49,15 @@ Tilemap:
       m_TileSpriteIndex: 2
       m_TileMatrixIndex: 3
       m_TileColorIndex: 0
+=======
+  - first: {x: -1, y: -3, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 1
+>>>>>>> Stashed changes
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
   - first: {x: -1, y: -2, z: 0}
@@ -71,19 +81,89 @@ Tilemap:
   - first: {x: -2, y: -1, z: 0}
     second:
       serializedVersion: 2
+<<<<<<< Updated upstream
       m_TileIndex: 3
       m_TileSpriteIndex: 3
       m_TileMatrixIndex: 2
       m_TileColorIndex: 0
+=======
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 2
+      m_TileColorIndex: 1
+>>>>>>> Stashed changes
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
   - first: {x: -1, y: -1, z: 0}
     second:
       serializedVersion: 2
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 2
+      m_TileColorIndex: 1
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: 0, y: -1, z: 0}
+    second:
+      serializedVersion: 2
       m_TileIndex: 0
       m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
+      m_TileColorIndex: 1
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: -2, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 3
+      m_TileColorIndex: 1
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: -1, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 1
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: 0, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 1
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: -2, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 3
+      m_TileColorIndex: 1
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: -1, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 1
+      m_TileColorIndex: 1
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: 0, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 1
+      m_TileColorIndex: 1
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
   - first: {x: 0, y: -1, z: 0}
@@ -124,6 +204,7 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
+<<<<<<< Updated upstream
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 45073a40cdc7ecb41b7fcba28bd8d221, type: 2}
   - m_RefCount: 0
@@ -143,6 +224,29 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 2c76c942d304b594292405b8b7cd0d0f, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 3
+=======
+  - m_RefCount: 4
+    m_Data: {fileID: 11400000, guid: b084272237c8147498792d917a2ce327, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 9d6e90ac91b76254e8f5d76673507c67, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 929c512085a72344e8dc18e5dbd8929a, type: 2}
+  - m_RefCount: 5
+    m_Data: {fileID: 11400000, guid: f95262c156fe3c04bab8c42341adbd7b, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileSpriteArray:
+  - m_RefCount: 4
+    m_Data: {fileID: 21300000, guid: 73e5f7e93be4e5e4f87dcabc3147e5a2, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: efa27bccd6caabb4d81cb44f1858ddae, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 8008370080bebea4d919560f3544f53e, type: 3}
+  - m_RefCount: 5
+    m_Data: {fileID: 21300000, guid: 2c76c942d304b594292405b8b7cd0d0f, type: 3}
+  m_TileMatrixArray:
+  - m_RefCount: 5
+>>>>>>> Stashed changes
     m_Data:
       e00: 1
       e01: 0
@@ -180,12 +284,21 @@ Tilemap:
       e33: 1
   - m_RefCount: 2
     m_Data:
+<<<<<<< Updated upstream
       e00: -1
       e01: 0
       e02: 0
       e03: 0
       e10: 0
       e11: -1
+=======
+      e00: 0
+      e01: 1
+      e02: 0
+      e03: 0
+      e10: -1
+      e11: 0
+>>>>>>> Stashed changes
       e12: 0
       e13: 0
       e20: 0
@@ -198,12 +311,21 @@ Tilemap:
       e33: 1
   - m_RefCount: 2
     m_Data:
+<<<<<<< Updated upstream
       e00: 0
       e01: 1
       e02: 0
       e03: 0
       e10: -1
       e11: 0
+=======
+      e00: -1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: -1
+>>>>>>> Stashed changes
       e12: 0
       e13: 0
       e20: 0
@@ -215,13 +337,26 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
+<<<<<<< Updated upstream
   - m_RefCount: 9
+=======
+  - m_RefCount: 1
+>>>>>>> Stashed changes
     m_Data: {r: 1, g: 1, b: 1, a: 1}
+  - m_RefCount: 10
+    m_Data: {r: 0.14901961, g: 1, b: 1, a: 1}
+  - m_RefCount: 0
+    m_Data: {r: 2.9872283e-27, g: 2.9872283e-27, b: 2.9872283e-27, a: 2.9872283e-27}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+<<<<<<< Updated upstream
   m_Origin: {x: -2, y: -2, z: 0}
   m_Size: {x: 3, y: 3, z: 1}
+=======
+  m_Origin: {x: -2, y: -4, z: 0}
+  m_Size: {x: 3, y: 6, z: 1}
+>>>>>>> Stashed changes
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -333,7 +468,11 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+<<<<<<< Updated upstream
 --- !u!114 &8210350074638872191
+=======
+--- !u!114 &866204294509075733
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

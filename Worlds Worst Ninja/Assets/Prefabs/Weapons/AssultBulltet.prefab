@@ -81,7 +81,11 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
+<<<<<<< Updated upstream
   m_Size: {x: 0.96875, y: 0.25}
+=======
+  m_Size: {x: 0.484375, y: 0.125}
+>>>>>>> Stashed changes
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -105,7 +109,11 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.96875, y: 0.25}
+<<<<<<< Updated upstream
     newSize: {x: 0.96875, y: 0.25}
+=======
+    newSize: {x: 0.484375, y: 0.125}
+>>>>>>> Stashed changes
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -146,9 +154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c480a68a9aa44d347838fbe1b2e080ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0.15
+  Speed: 0.5
   Lifetime: 1
   Explosion: {fileID: 6136894981235233437, guid: 7998099a1fcee6c4c9db7de04a3665bd, type: 3}
+  Particles: {fileID: 7036209283290683761, guid: 4320251e2c06faa43b49e72700202f44, type: 3}
 --- !u!96 &3577643121074569469
 TrailRenderer:
   serializedVersion: 2

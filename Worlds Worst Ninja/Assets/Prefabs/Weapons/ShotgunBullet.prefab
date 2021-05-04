@@ -146,9 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c480a68a9aa44d347838fbe1b2e080ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0.2
+  Speed: 0.6
   Lifetime: 0.5
   Explosion: {fileID: 7697254656871698393, guid: 54d27f75f73f2e2479cc7bdcf25eb850, type: 3}
+  Particles: {fileID: 651511563215237661, guid: c33661b5bd4db16489ab58c04f07eb0c, type: 3}
 --- !u!96 &-5201768232498749249
 TrailRenderer:
   serializedVersion: 2
@@ -199,7 +200,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.09859085
+        value: 0.25352097
         inSlope: 0
         outSlope: 0
         tangentMode: 0

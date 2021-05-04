@@ -100,6 +100,7 @@ MonoBehaviour:
   Speed: 0.25
   Lifetime: 0.5
   Explosion: {fileID: 1544840074214344724, guid: fe6fee3b71c2fd24fbf2658084b70f46, type: 3}
+  Particles: {fileID: 651511563215237661, guid: c33661b5bd4db16489ab58c04f07eb0c, type: 3}
 --- !u!58 &3200677590085633735
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -43,6 +43,7 @@ public class EnemyDamageAndKnockback : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        healthBar.SetHealth(Health);
     }
     // Update is called once per frame
     public void HitEnemy()
@@ -58,6 +59,7 @@ public class EnemyDamageAndKnockback : MonoBehaviour
         }
         else
             Health -= _WS.WeaponDamage / damageReductionValue;
+<<<<<<< Updated upstream
 
 
         StartCoroutine(FlashWhite());
@@ -72,6 +74,8 @@ public class EnemyDamageAndKnockback : MonoBehaviour
 
 
         Debug.Log("Hi");
+=======
+>>>>>>> Stashed changes
     }
 
     public void FirendlyFire(int damage)
@@ -91,7 +95,10 @@ public class EnemyDamageAndKnockback : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 13)

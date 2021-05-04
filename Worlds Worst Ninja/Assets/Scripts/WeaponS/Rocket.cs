@@ -8,7 +8,7 @@ public class Rocket : MonoBehaviour
     private WeaponStat _WS;
     private Vector2 _dir;
     public float Speed,Lifetime;
-    public GameObject Explosion;
+    public GameObject Explosion,Particles;
     private Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -35,6 +35,7 @@ public class Rocket : MonoBehaviour
         if (collision.gameObject.layer==8|| collision.gameObject.layer == 9 || collision.gameObject.layer == 12)
         {
             Instantiate(Explosion, transform.position, transform.rotation);
+            Instantiate(Particles, transform.position, transform.rotation);
             transform.position = transform.position;
             
                 Destroy(this.gameObject);

@@ -21,7 +21,7 @@ public class Arrow : MonoBehaviour
 
     private bool _hitground, _hitenemy, _hitwall;
 
-    public GameObject Sound, Particles, BurstPart;
+    public GameObject Sound, BurstPart;
 
     public Transform Spawner;
 
@@ -69,7 +69,7 @@ public class Arrow : MonoBehaviour
         }
        
         Sound = _WS.Sound;
-        Particles = _WS.Particles;
+        
         BurstPart = _WS.BurstPart;
         
         Vector2 mousePosition = inputs.Player.Look.ReadValue<Vector2>();
@@ -85,9 +85,9 @@ public class Arrow : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         
 
-        _hitground = hitGround = Physics2D.Raycast(transform.position, dir, maxRadius, WhatIsGround);
+        //_hitground = hitGround = Physics2D.Raycast(transform.position, dir, maxRadius, WhatIsGround);
 
-        _hitwall = hitWall = Physics2D.Raycast(transform.position, dir, maxRadius, WhatIsWall);
+        //_hitwall = hitWall = Physics2D.Raycast(transform.position, dir, maxRadius, WhatIsWall);
 
        
         line.SetPosition(1, new Vector3(maxRadius, 0, 0));
